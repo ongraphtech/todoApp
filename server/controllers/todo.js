@@ -17,7 +17,7 @@ exports.create = function(req, res){
 					);
 		}
 		console.log(todo);
-		return todo; 
+		return res.jsonp(todo); 
 	});	
 	
 };
