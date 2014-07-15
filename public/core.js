@@ -2,35 +2,28 @@
 
 var todo = angular.module('todoApp', ['ngResource']);
 todo.factory('ToDa', ['$resource', function($resource){
-	return $resource('/todo');
+	var ToDa = $resource('/todo/:id');
+	return ToDa;
 }]);
 
-todo.controller('ToDoController', ['$scope', '$http', 'ToDa', function($scope, $http, toDa){
+todo.constant('_', window._);
+todo.controller('ToDoController', ['$scope', '$http', 'ToDa','_', function($scope, $http, ToDa, _){
 	$scope.formData = {};
-
-	$scope.todos = toDa.query();
-	
+	$scope.todos = ToDa.query();
 	$scope.createTodo = function() {
-		var newTodo = new toDa($scope.formData);
+		var newTodo = new ToDa($scope.formData);
 		newTodo.$save(function(data, headers) {
 				$scope.formData = {}; // clear the form so our user is ready to enter another
-				console.log(data);
-				$scope.todos.push( new toDa(data));
+				$scope.todos.push( data);
 			},
 			function(res){
 				console.log('Error: ' + res);
 			});
 	};
 
-	$scope.deleteTodo = function(id) {
-		$http.delete('/todo/' + id)
-			.success(function(data) {
-				$scope.todos = data;
-				console.log(data);
-			})
-			.error(function(data) {
-				console.log('Error: ' + data);
-			});
+	$scope.deleteTodo = function(todo){ 
+		 ToDa.delete({id: todo._id});
+		$scope.todos = _.without($scope.todos, todo);
+		 // $scope.todos=ToDa.query();
 	};
-	
 }]);

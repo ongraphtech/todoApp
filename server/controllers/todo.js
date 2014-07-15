@@ -36,20 +36,13 @@ exports.all = function(req, res){
 exports.deleteTodo = function(req, res){
 	
 	ToDo.remove({
-		_id : req.params.todo_id
+		_id: req.params.id
 	},function(err){
 		if (err) {
             return res.jsonp(500, {
                 error: 'Cannot delete the todo'
             });
         }
-        ToDo.find(function(err, todos){
-			if(err){
-				return res.jsonp(500, {
-					error :'Error in retrieving'}
-				);
-			}
-			return res.jsonp(todos);
-		});
+        return res.jsonp(200,"deleted successfully");
 	});
 };

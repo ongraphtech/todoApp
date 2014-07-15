@@ -12,7 +12,7 @@ module.exports =  function(app, todo){
 		todoCtrl.all(req, res);
 	});
 
-	todo.delete('/todo/:todo_id', function(req, res) {
+	todo.delete('/todo/:id', function(req, res) {
 		todoCtrl.deleteTodo(req, res);
 	});
 

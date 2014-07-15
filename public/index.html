@@ -17,7 +17,8 @@
 	</style>
 
 	<!-- SPELLS -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery --> 
+	<script src="http://underscorejs.org/underscore.js"></script>
 	<script src="js/angular.js"></script><!-- load angular -->
 	<script src="js/angular-resource.js"></script><!-- load angular -->
 	<script src="core.js"></script>
@@ -39,7 +40,7 @@
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 				<div class="checkbox" ng-repeat="todo in todos">
 					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.name }}
+						<input type="checkbox" ng-click="deleteTodo(todo)"> {{ todo.name }}
 					</label>
 				</div>
 
