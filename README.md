@@ -9,7 +9,7 @@ Deployment Steps
 
    1. Install nodejs, mongodb
    2. Clone the repository, go to the directory and run the following command:
-   > npm install
+   > npm install  
    > grunt
    
    3. Open browser and hit the url http://localhost:8080
