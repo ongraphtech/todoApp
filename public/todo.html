@@ -1,0 +1,37 @@
+<!-- HEADER AND TODO COUNT -->
+		<div class="jumbotron text-center">
+			<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length | number}}</span></h1>
+		</div>
+		<div ng-messages="todoForm.todoText.$error" ng-messages-include="errorMessages.html" class="alert alert-danger error-message" >
+		</div>
+		
+
+		<!-- TODO LIST -->
+		<div id="todo-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				<div class="checkbox repeated-item" ng-repeat="todo in todos" >
+					<label>
+						<input type="checkbox" ng-click="deleteTodo(todo)"> {{ todo.name }}
+					</label>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE TODOS -->
+		<div id="todo-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form name="todoForm" ng-submit="todoForm.$valid && createTodo(ntodo)" novalidate>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" name="todoText" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-change="change()" ng-model="ntodo.name" ng-minlength="10" required>
+					</div>
+					
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<input type="submit" class="btn btn-primary btn-lg" value="Add">
+				</form>
+			</div>
+		</div>

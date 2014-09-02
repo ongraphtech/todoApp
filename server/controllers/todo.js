@@ -23,6 +23,7 @@ exports.create = function(req, res){
 };
 
 exports.all = function(req, res){
+	console.log("Find");
 	ToDo.find(function(err, todos){
 		if(err){
 			return res.jsonp(500, {
@@ -46,3 +47,4 @@ exports.deleteTodo = function(req, res){
         return res.jsonp(200,"deleted successfully");
 	});
 };
+
